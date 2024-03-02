@@ -1,5 +1,4 @@
 from websockets.sync.client import connect
-from picamera import Picamera
 from butterMove import ButterMove
 
 
