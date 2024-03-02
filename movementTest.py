@@ -15,16 +15,19 @@ while True:
             print(let)
 
             if 'w' in let:
-                
-                print("burh:")
                 tbot.forward(1)
-                
                 time.sleep(0.1)
-            elif let == 'a':
+            elif 'a' in let:
                 tbot.turn_right(1)
                 time.sleep(0.1)
-            elif let == 'd':
+            elif 'd' in let:
                 tbot.turn_left(1)
                 time.sleep(0.1)
-            elif ' ' in let:
+            elif 's' in let:
+                tbot.backward(-1)
+                time.sleep(0.1)
+
+
+            elif x in let:
                 tbot.coast()
+                print("stop")
