@@ -10,11 +10,12 @@ while True:
         for e in input_generator:
             print(repr(e))
             let = repr(e)
-
+            
             if let == 'w':
                 tbot.forward(1)
                 
                 time.sleep(0.1)
+                print("burh:")
             elif let == 'a':
                 tbot.turn_right(1)
                 time.sleep(0.1)
