@@ -8,7 +8,7 @@ async def run():
     bot = ButterMove()
     with connect(SOCKET) as websocket:
         while True:
-            let = await websocket.recv()
+            let = websocket.recv()
 
             if 'FORWARD' in let:
                 bot.foward()
