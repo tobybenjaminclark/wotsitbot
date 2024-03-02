@@ -47,8 +47,8 @@ while True:
                    time.sleep(0.01)
             elif 'e' in let:
                 tbot.clear_underlighting()
-                if ang != 45: 
-                   ang += 1
+                if ang != -45: 
+                   ang -= 1
                    tbot.set_servo_angle(ang)
                    time.sleep(0.01)
             elif 'x' in let:
