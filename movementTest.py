@@ -9,8 +9,10 @@ while True:
     with Input(keynames='curses') as input_generator:
         for e in input_generator:
             print(repr(e))
-            let = repr(e)
+            let = str(repr(e))
             
+            
+
             if let == 'w':
                 tbot.forward(1)
                 
