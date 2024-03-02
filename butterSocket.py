@@ -1,8 +1,13 @@
+from gevent import monkey
+
+monkey.patch_all(thread=False, select=False)
+
 from butterMove import ButterMove
 from requests import Session
 from signalr import Connection
 
 SOCKET = "https://192.168.243.215:7078/"
+
 
 bot = ButterMove()
 
