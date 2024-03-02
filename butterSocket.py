@@ -1,28 +1,40 @@
-from websockets.sync.client import connect
 from butterMove import ButterMove
-import asyncio
+from requests import Session
+from signalr import Connection
 
 SOCKET = "ws://192.168.243.226:8765/"
 
-async def run():
-    bot = ButterMove()
-    with connect(SOCKET) as websocket:
+bot = ButterMove()
+
+with Session() as session:
+    connection = Connection(SOCKET, session)
+    
+    chat = connection.register_hub('bot')
+
+    connection.start()
+
+    def acceptMessage(data):
+        let = str(data)
+
+        print(let)
+
+        if 'FORWARD' in let:
+            bot.foward()
+        elif 'TURN_R' in let:
+            bot.turnRight()
+        elif 'TURN_L' in let:
+            bot.turnLeft()
+        elif 'BACKWARDS' in let:
+            bot.backward()
+        elif 'TILT_U' in let:
+            bot.tiltUp()
+        elif 'TILT_D' in let:
+            bot.tiltDown()
+        elif 'STOP' in let:
+            bot.stopAll()
+
+    chat.client.on('newMessageRecieved', acceptMessage)
+
+    with connection:
         while True:
-            let = websocket.recv()
-
-            if 'FORWARD' in let:
-                bot.foward()
-            elif 'TURN_R' in let:
-                bot.turnRight()
-            elif 'TURN_L' in let:
-                bot.turnLeft()
-            elif 'BACKWARDS' in let:
-                bot.backward()
-            elif 'TILT_U' in let:
-                bot.tiltUp()
-            elif 'TILT_D' in let:
-                bot.tiltDown()
-            elif 'STOP' in let:
-                bot.stopAll()
-
-asyncio.get_event_loop().run_until_complete(run())
+            connection.wait(0.2)
