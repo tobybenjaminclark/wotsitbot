@@ -14,13 +14,13 @@ while True:
     butA = tbot.read_button(BUTTON_A)
     butB = tbot.read_button(BUTTON_B)
     if butA:
-        if ang != 90: 
+        if ang != 45: 
             ang += 1
             tbot.set_servo_angle(ang)
-            time.sleep(0.05)
+            time.sleep(0.01)
 
     if butB:
-        if ang != -90: 
+        if ang != -45: 
             ang -= 1
             tbot.set_servo_angle(ang)
-            time.sleep(0.05)
+            time.sleep(0.01)
