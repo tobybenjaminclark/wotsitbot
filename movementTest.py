@@ -2,10 +2,15 @@ import time
 from trilobot import *
 import math
 import keyboard
+from curtsies import Input
 
 tbot = Trilobot()
 
 while True:
+    with Input(keynames='curses') as input_generator:
+        for e in input_generator:
+            print(repr(e))
+
     if keyboard.read_key() == 'w':
         tbot.forward(1)
         
