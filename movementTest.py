@@ -16,12 +16,18 @@ while True:
 
             if 'w' in let:
                 tbot.forward(1)
+                tbot.set_underlight(LIGHT_FRONT_RIGHT, 0, 255, 0)  
+                tbot.set_underlight(LIGHT_FRONT_LEFT, 0, 255, 0)  
                 time.sleep(0.1)
             elif 'a' in let:
-                tbot.turn_right(1)
+                tbot.turn_right(0.15)
+                tbot.clear_underlight(LIGHT_FRONT_LEFT)
+                tbot.set_underlight(LIGHT_FRONT_RIGHT, 0, 255, 0)
                 time.sleep(0.1)
             elif 'd' in let:
-                tbot.turn_left(1)
+                tbot.turn_left(0.15)
+                tbot.clear_underlight(LIGHT_FRONT_RIGHT)
+                tbot.set_underlight(LIGHT_FRONT_LEFT, 0, 255, 0)
                 time.sleep(0.1)
             elif 's' in let:
                 tbot.backward(-1)
