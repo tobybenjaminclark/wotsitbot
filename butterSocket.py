@@ -1,8 +1,4 @@
-from gevent import monkey
-
-monkey.patch_all(thread=False, select=False)
-
-
+from websockets import connect
 from butterMove import ButterMove
 import asyncio
 
