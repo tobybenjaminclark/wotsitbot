@@ -14,16 +14,16 @@ while True:
     butA = tbot.read_button(BUTTON_A)
     butB = tbot.read_button(BUTTON_B)
     if butA:
-        ang += 1
-        if ang > 360: 
-            ang -= 360
-        tbot.set_servo_angle(ang)
+        if ang != 90: 
+            ang += 1
+            tbot.set_servo_angle(ang)
+            time.sleep(0.1)
 
     if butB:
-        ang -= 1
-        if ang < 360: 
-            ang += 360
-        tbot.set_servo_angle(ang)
+        if ang != -90: 
+            ang -= 1
+            tbot.set_servo_angle(ang)
+            time.sleep(0.1)
 
 print("Go to center")
 tbot.servo_to_center()
