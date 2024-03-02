@@ -31,8 +31,8 @@ while True:
                 time.sleep(0.1)
             elif 's' in let:
                 tbot.backward(1)
-                tbot.set_underlight(LIGHT_BACK_RIGHT, 255, 0, 0)  
-                tbot.set_underlight(LIGHT_BACK_LEFT, 255, 0, 0)  
+                tbot.set_underlight(LIGHT_REAR_RIGHT, 255, 0, 0)  
+                tbot.set_underlight(LIGHT_REAR_LEFT, 255, 0, 0)  
                 time.sleep(0.1)
 
 
