@@ -11,7 +11,7 @@ while True:
             print(repr(e))
             let = str(repr(e))
             
-            
+            print(let)
 
             if let == 'w':
                 tbot.forward(1)
