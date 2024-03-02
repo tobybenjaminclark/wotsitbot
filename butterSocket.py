@@ -2,18 +2,29 @@ from butterMove import ButterMove
 from requests import Session
 from signalr import Connection
 
-SOCKET = "ws://192.168.243.226:8765/"
+SOCKET = "https://192.168.243.215:7078/"
 
 bot = ButterMove()
 
 with Session() as session:
     connection = Connection(SOCKET, session)
     
-    chat = connection.register_hub('bot')
+    chat = connection.register_hub('RobotControlHub')
 
     connection.start()
+    
 
-    def acceptMessage(data):
+    global_name = None
+
+    def setName(new_name):
+        global global_name
+
+        global_name = new_name
+
+    def acceptMessage(name, data):
+        if name != global_name:
+            return
+        
         let = str(data)
 
         print(let)
@@ -33,7 +44,8 @@ with Session() as session:
         elif 'STOP' in let:
             bot.stopAll()
 
-    chat.client.on('newMessageRecieved', acceptMessage)
+    chat.client.on('SetRobotName', setName)
+    chat.client.on('RecieveRobotCommand', acceptMessage)
 
     with connection:
         while True:
