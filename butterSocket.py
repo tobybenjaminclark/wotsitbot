@@ -2,9 +2,6 @@ from gevent import monkey
 
 monkey.patch_all(thread=False, select=False)
 
-import urllib3
-
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 from butterMove import ButterMove
 from requests import Session
@@ -16,6 +13,8 @@ SOCKET = "https://192.168.243.215:7078/"
 bot = ButterMove()
 
 with Session() as session:
+    session.verify = False
+    
     connection = Connection(SOCKET, session)
     
     chat = connection.register_hub('RobotControlHub')
