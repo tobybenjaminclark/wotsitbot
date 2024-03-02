@@ -11,7 +11,7 @@ async def getmsg():
 while True:
     bot = ButterMove()
     
-    let = getmsg
+    let = getmsg()
 
     if 'FORWARD' in let:
         bot.foward()
