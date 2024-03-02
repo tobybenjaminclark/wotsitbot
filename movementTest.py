@@ -17,8 +17,8 @@ while True:
             if 'w' in let:
                 tbot.forward(1)
                 tbot.clear_underlighting()
-                tbot.set_underlight(LIGHT_FRONT_RIGHT, 0, 255, 0)  
-                tbot.set_underlight(LIGHT_FRONT_LEFT, 0, 255, 0)  
+                tbot.set_underlight(LIGHT_FRONT_RIGHT, 200, 255, 0)  
+                tbot.set_underlight(LIGHT_FRONT_LEFT, 200, 255, 0)  
                 time.sleep(0.1)
             elif 'd' in let:
                 tbot.turn_right(0.7)
