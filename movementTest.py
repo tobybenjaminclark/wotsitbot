@@ -5,6 +5,8 @@ from curtsies import Input
 
 tbot = Trilobot()
 
+
+tbot.set_servo_angle(0)
 ang = 0
 while True:
     with Input(keynames='curses') as input_generator:
