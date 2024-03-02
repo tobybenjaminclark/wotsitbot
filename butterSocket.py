@@ -2,11 +2,11 @@ from websockets.sync.client import connect
 from butterMove import ButterMove
 import asyncio
 
-SOCKET = "ws://localhost:8765/"
+SOCKET = "ws://192.168.243.226:8765/"
 
 async def run():
     bot = ButterMove()
-    async with connect(SOCKET) as websocket:
+    with connect(SOCKET) as websocket:
         while True:
             let = await websocket.recv()
 
