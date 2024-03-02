@@ -7,14 +7,14 @@ from butterMove import ButterMove
 from requests import Session
 from signalr import Connection
 
-SOCKET = "https://192.168.243.215:7078/"
+SOCKET = "https://192.168.243.215:7078/robot-control"
 
 
 bot = ButterMove()
 
 with Session() as session:
     session.verify = False
-    
+
     connection = Connection(SOCKET, session)
     
     chat = connection.register_hub('RobotControlHub')
