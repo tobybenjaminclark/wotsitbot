@@ -28,6 +28,6 @@ while True:
                 time.sleep(0.1)
 
 
-            elif x in let:
+            elif 'x' in let:
                 tbot.coast()
                 print("stop")
