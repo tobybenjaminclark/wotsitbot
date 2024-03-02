@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-
 import math
 import time
 from trilobot import Trilobot
-
-"""
-An example of how to command a servo connected to Trilobot to move and perform sweeping motions.
-"""
-print("Trilobot Example: Servo Control\n")
 
 SWEEPS = 5  # How many sweeps of the servo to perform
 STEPS = 10  # The number of discrete sweep steps
 STEPS_INTERVAL = 0.5  # The time in seconds between each step of the sequence
 
 tbot = Trilobot()
+
+while True:
+    butA = tbot.read_button(BUTTON_A)
+
+    if butA:
+        tbot.servo_angle(0)
 
 print("Go to center")
 tbot.servo_to_center()
