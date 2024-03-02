@@ -26,3 +26,5 @@ while True:
             elif let == 'd':
                 tbot.turn_left(1)
                 time.sleep(0.1)
+            elif ' ' in let:
+                tbot.coast()
