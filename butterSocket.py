@@ -5,7 +5,7 @@ from butterMove import ButterMove
 
 SOCKET = "ws://localhost:8765/"
 
-def listen():
+while True:
     bot = ButterMove()
     with connect(SOCKET) as websocket:
         msg = websocket.recv()
@@ -25,3 +25,4 @@ def listen():
             bot.tiltDown()
         elif 'STOP' in let:
             bot.stopAll()
+
