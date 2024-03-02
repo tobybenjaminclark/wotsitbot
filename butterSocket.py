@@ -48,5 +48,4 @@ with Session() as session:
     chat.client.on('RecieveRobotCommand', acceptMessage)
 
     with connection:
-        while True:
-            connection.wait(0.2)
+        connection.wait(10)
