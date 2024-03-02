@@ -13,7 +13,7 @@ while True:
     butA = tbot.read_button(BUTTON_A)
 
     if butA:
-        tbot.servo_angle(0)
+        tbot.set_servo_angle(0)
 
 print("Go to center")
 tbot.servo_to_center()
