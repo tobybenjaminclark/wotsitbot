@@ -4,56 +4,29 @@ monkey.patch_all(thread=False, select=False)
 
 
 from butterMove import ButterMove
-from requests import Session
-from signalr import Connection
+import asyncio
 
-SOCKET = "https://192.168.243.215:7078/robot-control"
+SOCKET = "ws://192.168.243.226:8765/"
 
+async def run():
+    bot = ButterMove()
+    with connect(SOCKET) as websocket:
+        while True:
+            let = await websocket.recv()
 
-bot = ButterMove()
+            if 'FORWARD' in let:
+                bot.foward()
+            elif 'TURN_R' in let:
+                bot.turnRight()
+            elif 'TURN_L' in let:
+                bot.turnLeft()
+            elif 'BACKWARDS' in let:
+                bot.backward()
+            elif 'TILT_U' in let:
+                bot.tiltUp()
+            elif 'TILT_D' in let:
+                bot.tiltDown()
+            elif 'STOP' in let:
+                bot.stopAll()
 
-with Session() as session:
-    session.verify = False
-
-    connection = Connection(SOCKET, session)
-    
-    chat = connection.register_hub('RobotControlHub')
-
-    connection.start()
-    
-
-    global_name = None
-
-    def setName(new_name):
-        global global_name
-
-        global_name = new_name
-
-    def acceptMessage(name, data):
-        if name != global_name:
-            return
-        
-        let = str(data)
-
-        print(let)
-
-        if 'FORWARD' in let:
-            bot.foward()
-        elif 'TURN_R' in let:
-            bot.turnRight()
-        elif 'TURN_L' in let:
-            bot.turnLeft()
-        elif 'BACKWARDS' in let:
-            bot.backward()
-        elif 'TILT_U' in let:
-            bot.tiltUp()
-        elif 'TILT_D' in let:
-            bot.tiltDown()
-        elif 'STOP' in let:
-            bot.stopAll()
-
-    chat.client.on('SetRobotName', setName)
-    chat.client.on('RecieveRobotCommand', acceptMessage)
-
-    with connection:
-        connection.wait(10)
+asyncio.get_event_loop().run_until_complete(run())
