@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import math
 import time
-from trilobot import Trilobot
+from trilobot import Trilobot, BUTTON_A, BUTTON_B
 
 SWEEPS = 5  # How many sweeps of the servo to perform
 STEPS = 10  # The number of discrete sweep steps
