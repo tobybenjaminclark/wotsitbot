@@ -5,7 +5,10 @@ import websockets
 message_to_send = "TURN_R\n"
 
 async def send_message():
-    server = await websockets.serve(message_to_send, '192.168.243.38', 8765)
-    await server.wait_closed()
+    uri = "ws://192.168.243.38:8765"
+    
+    async with websockets.connect(uri) as ws:
+        
+        await ws.send(message_to_send)
 
-asyncio.run(send_message())
+asyncio.get_event_loop().run_until_complete(send_message())
