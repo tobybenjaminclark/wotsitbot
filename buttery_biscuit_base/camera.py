@@ -2,7 +2,7 @@ from picamera2 import Picamera2
 import cv2
 
 class CameraFeed:
-    def __init__():
+    def __init__(self):
         self.camera = PiCamera2()
 
         self.camera.configure(self.camera.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
