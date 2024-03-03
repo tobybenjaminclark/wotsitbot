@@ -1,9 +1,13 @@
 import cv2
 
+from picamera.array import PiRGBArray
+from picamera import PiCamera
+
 class CameraFeed:
-    feed = cv2.VideoCapture(0) 
+    camera = PiCamera()
 
     def get_current_image_bytes(self):
-        ret, frame = self.feed.read()
+        rawCapture = PiRGBArray(self.camera)
+        self.camera.capture(rawCapture, format="bgr")
 
-        return cv2.imencode('.png', frame)[1]
+        return cv2.imencode('.png', rawCapture.array)[1]
