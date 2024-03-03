@@ -1,5 +1,6 @@
 import asyncio
 import websockets
+import cv2
 
 TEST_URI = "ws://192.168.243.38:8765"
 
@@ -8,8 +9,11 @@ async def send_message():
     message_to_send = "TURN_R\n"
     
     async with websockets.connect(TEST_URI) as ws:
-        
-        await ws.send(message_to_send)
+        asyncio.run(ws.send(message_to_send))
+        image = await ws.recv()
+
+        image = cv2.imdecode(image)
+        cv2.imshow("Hello", image)
 
 if __name__=="__main__":
     asyncio.get_event_loop().run_until_complete(send_message())
