@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "cheesecake"
+name = "buttery-biscuit-base"
 version = "0.1.0"
 description = ""
 authors = ["dthelegend <me@daudi.dev>"]
@@ -7,6 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+websockets = "^12.0"
 
 
 [build-system]
