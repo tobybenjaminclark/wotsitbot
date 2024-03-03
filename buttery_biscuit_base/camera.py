@@ -1,5 +1,4 @@
 from picamera2 import Picamera2
-from picamera2.encoders import PngEncoder
 import cv2
 
 class CameraFeed:
