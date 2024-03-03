@@ -1,7 +1,6 @@
 import time
 from trilobot import *
 import math
-from curtsies import Input
 from picamera import PiCamera
 
 class ButterMove:
@@ -57,30 +56,3 @@ class ButterMove:
     def stopAll(self):
         self.tbot.coast()
         self.tbot.clear_underlighting()
-
-
-if __name__ == "__main__":
-    bot = ButterMove()
-    while True:
-        with Input(keynames='curses') as input_generator:
-
-            for e in input_generator:
-                print(repr(e))
-                let = str(repr(e))
-                
-                print(let)
-
-                if 'w' in let:
-                    bot.foward()
-                elif 'd' in let:
-                    bot.turnRight()
-                elif 'a' in let:
-                    bot.turnLeft()
-                elif 's' in let:
-                    bot.backward()
-                elif 'q' in let:
-                    bot.tiltUp()
-                elif 'e' in let:
-                    bot.tiltDown()
-                elif 'x' in let:
-                    bot.stopAll()
