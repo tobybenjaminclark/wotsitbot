@@ -1,5 +1,4 @@
 from picamera2 import Picamera2
-from picamera2.encoders import JpegEncoder
 import io
 
 class CameraFeed:
@@ -8,18 +7,14 @@ class CameraFeed:
 
         video_config = self.camera.create_video_configuration(main={"size": (640, 480)})
         self.camera.configure(video_config)
-        
-        self.camera.start_preview()
 
-        self.encoder = JpegEncoder(q=70)
-
-        self.bytes_io = io.BytesIO()
-
-        self.camera.start_recording(self.encoder, self.bytes_io)
+        self.camera.start()
 
     def get_current_image_bytes(self):
-        
-        return self.bytes_io.read()
+        data = io.BytesIO()
+        self.camera.capture_file(data, format='jpeg')
+        data.seek(0)
+        return data.read()
 
     def __del__(self):
-        self.camera.stop_recording()
+        self.camera.stop()
