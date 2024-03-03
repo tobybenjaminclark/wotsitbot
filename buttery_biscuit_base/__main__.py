@@ -13,27 +13,20 @@ async def run(bot, host):
         while True:
             let = await websocket.recv()
 
-            match let:
-                case 'FORWARD':
-                    bot.foward()
-                    break
-                case 'TURN_R':
-                    bot.turnRight()
-                    break
-                case 'TURN_L':
-                    bot.turnLeft()
-                    break
-                case 'BACKWARDS':
-                    bot.backward()
-                    break
-                case 'TILT_U':
-                    bot.tiltUp()
-                    break
-                case 'TILT_D':
-                    bot.tiltDown()
-                    break
-                case _:
-                    bot.stopAll()
+            if 'FORWARD' in let:
+                bot.foward()
+            elif 'TURN_R' in let:
+                bot.turnRight()
+            elif 'TURN_L' in let:
+                bot.turnLeft()
+            elif 'BACKWARDS' in let:
+                bot.backward()
+            elif 'TILT_U' in let:
+                bot.tiltUp()
+            elif 'TILT_D' in let:
+                bot.tiltDown()
+            else:
+                bot.stopAll()
 
 def run_local(bot):
     print("Buttery Biscuit Base Local runner")
