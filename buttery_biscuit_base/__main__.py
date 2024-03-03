@@ -30,7 +30,7 @@ async def run(ws):
         else:
             bot.stopAll()
         
-        asyncio.run(ws.send(feed.get_current_image_bytes()))
+        await ws.send(feed.get_current_image_bytes())
         
 
 def run_local():

@@ -9,11 +9,11 @@ async def send_message():
     message_to_send = "TURN_R\n"
     
     async with websockets.connect(TEST_URI) as ws:
-        asyncio.run(ws.send(message_to_send))
+        await ws.send(message_to_send)
         image = await ws.recv()
 
         image = cv2.imdecode(image)
         cv2.imshow("Hello", image)
 
 if __name__=="__main__":
-    asyncio.get_event_loop().run_until_complete(send_message())
+    asyncio.run(send_message())
