@@ -5,7 +5,7 @@ class CameraFeed:
     def __init__(self):
         self.camera = Picamera2()
 
-        video_config = self.camera.create_video_configuration(main={"size": (640, 480)})
+        video_config = self.camera.create_video_configuration(main={"size": (1080, 480)})
         self.camera.configure(video_config)
 
         self.camera.start()
