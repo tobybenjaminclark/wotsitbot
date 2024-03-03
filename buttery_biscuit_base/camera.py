@@ -6,16 +6,19 @@ class CameraFeed:
     def __init__(self):
         self.camera = Picamera2()
 
-        video_config = self.camera.create_video_configuration(main={"size": (1920, 1080)})
+        video_config = self.camera.create_video_configuration(main={"size": (640, 480)})
         self.camera.configure(video_config)
+        
+        self.camera.start_preview()
 
-        encoder = JpegEncoder(q=70)
+        self.encoder = JpegEncoder(q=70)
 
         self.bytes_io = io.BytesIO()
 
-        self.camera.start_recording(encoder, self.bytes_io)
+        self.camera.start_recording(self.encoder, self.bytes_io)
 
     def get_current_image_bytes(self):
+        
         return self.bytes_io.read()
 
     def __del__(self):
