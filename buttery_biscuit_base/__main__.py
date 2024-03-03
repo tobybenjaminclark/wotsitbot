@@ -1,10 +1,14 @@
 from websockets import serve
+from buttery_biscuit_base.camera import CameraFeed
 from buttery_biscuit_base.move import ButterMove
 from curtsies import Input
+import cv2
 import asyncio
 
 DEFAULT_CONNECTION_STRING = "ws://0.0.0.0:8765/"
+
 bot = ButterMove()
+feed = CameraFeed()
 
 async def run(ws):
 
@@ -25,8 +29,11 @@ async def run(ws):
             bot.tiltDown()
         else:
             bot.stopAll()
+        
+        asyncio.run(ws.send(feed.get_current_image_bytes()))
+        
 
-def run_local(bot):
+def run_local():
     print("Buttery Biscuit Base Local runner")
     while True:
         with Input(keynames='curses') as input_generator:
@@ -55,7 +62,7 @@ def run_local(bot):
 async def main(local = False, host=DEFAULT_CONNECTION_STRING):
 
     if local:
-        run_local(bot)
+        run_local()
     else:
         print(f"Creating Buttery Biscuit Base at {host}")
 

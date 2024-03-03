@@ -1,7 +1,6 @@
 import time
 from trilobot import *
-import math
-from picamera import PiCamera
+
 
 class ButterMove:
     def __init__(self):
