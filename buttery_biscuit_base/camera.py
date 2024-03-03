@@ -1,13 +1,13 @@
+from picamera2 import Picamera2
+from picamera2.encoders import PngEncoder
 import cv2
 
-from picamera.array import PiRGBArray
-from picamera import PiCamera
-
 class CameraFeed:
-    camera = PiCamera()
+    def __init__():
+        self.camera = PiCamera2()
+
+        self.camera.configure(self.camera.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
+        self.camera.start()
 
     def get_current_image_bytes(self):
-        rawCapture = PiRGBArray(self.camera)
-        self.camera.capture(rawCapture, format="bgr")
-
-        return cv2.imencode('.png', rawCapture.array)[1]
+        return cv2.imencode('.png', self.camera.capture_array())[1]
