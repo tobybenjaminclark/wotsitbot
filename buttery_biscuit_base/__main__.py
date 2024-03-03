@@ -8,7 +8,7 @@ DEFAULT_CONNECTION_STRING = "ws://0.0.0.0:8765/"
 async def run(bot, host):
     print(f"Creating Buttery Biscuit Base at {host}")
 
-    with connect(host) as websocket:
+    async with connect(host) as websocket:
         print(f"Now listening")
         while True:
             let = await websocket.recv()
